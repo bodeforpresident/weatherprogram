@@ -14,24 +14,58 @@ void weatherOutput() {
 
 int main()
 {
+    // Temperature
     cout << "Enter the temperature in Farenheit: \n";
         cin >> temp;
+        do {
+            cout << "Please input your temperature again: \n";
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cin >> temp;
+        } while (!temp);
+
+        do {
+            cout << "Nice try, enter your actual temperature: \n";
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cin >> temp;
+        } while (temp > 150 || temp < -134);
+
+    // Windspeed
     cout << "Enter the wind speed in mph: \n";
         cin >> wind;
+        do {
+            cout << "Please input your wind speed again: \n";
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cin >> wind;
+        } while (!wind);
+
+        do {
+            cout << "Nice try, enter your actual wind speed: \n";
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cin >> temp;
+        } while (wind > 150 || temp < 0);
+
+    // Dewpoint
     cout << "Enter the dewpoint in Fahrenheit: \n";
         cin >> dew;
+        do {
+            cout << "Please input your dewpoint again: \n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cin >> dew;
+        } while (!dew);
 
-    //denial
-    if (!temp) {
-        cout << "Please enter your temperature again: \n";
+        do {
+            cout << "Nice try, enter your actual dewpoint: \n";
+            cin.clear();
+            cin.ignore(10000, '\n');
             cin >> temp;
-        weatherOutput();
-    } 
-    if (!wind) {
-        cout << "Please enter your wind speed again: \n";
-            cin >> wind;
-        weatherOutput();
-    }
+        } while (temp > 150 || temp < 0);
+
+    // Output
     weatherOutput();
     return 0;
 }
