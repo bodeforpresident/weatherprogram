@@ -29,7 +29,7 @@ int main()
     // Windspeed
     cout << "Enter the wind speed in mph: \n";
         cin >> wind;
-        while (!wind) {
+        while (!wind) { // Wrong characters
             cout << "Please input your wind speed again: \n";
             cin.clear();
             cin.ignore(10000, '\n');
@@ -39,7 +39,7 @@ int main()
     // Dewpoint
     cout << "Enter the dewpoint in Fahrenheit: \n";
         cin >> dew;
-        while (!dew) {
+        while (!dew) { // Wrong characters
             cout << "Please input your dewpoint again: \n";
             cin.clear();
             cin.ignore(1000, '\n');
