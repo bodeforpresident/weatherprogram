@@ -2,51 +2,72 @@
 #include <cmath>
 using namespace std;
 
-// Variable declaration
-double wind, temp, dew;
+// Function Declaration, inputs are temp, dewpoint, and windspeed, other values are cloudbase and windchill
+void windChillCalc(double& temp, double& windSpeed, double& windChill);
+void cloudbaseCalc(double& temp, double& dewPoint, double& cloudbase);
+void input(double& temp, double& windSpeed, double& dewPoint);
+void weatherOutput(double& temp, double& windSpeed, double& dewPoint, double windChillCalc, double cloudbaseCalc);
 
-// Weather output function declaration
-void weatherOutput() {
-    cout << "____________________________________________________________________________________________________\n";
-    cout << "|  Temperature (F)  |  Wind Speed (Mph)  |  Dew Point (F)  |  Wind Chill  (F)  |  Cloud Base (Ft)  |\n";
-    cout << "|==================================================================================================|\n";
-    cout << "|  " << temp << " degrees       |  " << wind << " mph             |  " << dew << " degrees     |  " << 35.74 + (0.6215 * temp) - (37.75 * pow(wind, 0.16)) + pow(0.4275 * temp * wind, 0.16) << " degrees  |  " << 1000 * ((temp - dew) / 4.4) << " feet       |\n";
-    cout << "|___________________|____________________|_________________|___________________|___________________|";
+int main() {
+    double temp, windSpeed, dewPoint, windChill, cloudbase;
+
+    // Take Inputs
+    input(temp, windSpeed, dewPoint);
+
+    // Run Calculations
+    windChillCalc(temp, windSpeed, windChill);
+    cloudbaseCalc(temp, dewPoint, cloudbase);
+
+    // Output Table
+    weatherOutput(temp, windSpeed, dewPoint, windChill, cloudbase);
 }
 
-int main()
-{
-    // Temperature
-    cout << "Enter the temperature in Farenheit: \n";
-        cin >> temp;
-        while (!temp) { // Wrong characters
-            cout << "Please input your temperature again: \n";
+// Inputs
+void input(double& temp, double& windSpeed, double& dewPoint) {
+    cout << "Please enter the temperature in Fahrenheit:\n"; // temperature input
+    cin >> temp;
+        if (!temp) {
+            cout << "Please enter your temperature again:\n";
             cin.clear();
             cin.ignore(10000, '\n');
             cin >> temp;
         }
-
-    // Windspeed
-    cout << "Enter the wind speed in mph: \n";
-        cin >> wind;
-        while (!wind) { // Wrong characters
-            cout << "Please input your wind speed again: \n";
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cin >> wind;
+    cout << "Please enter your wind speed in MPH:\n"; // wind speed input
+    cin >> windSpeed;
+        if (!windSpeed) {
+            cout << "Please enter your windspeed again:\n";
+                cin.clear();
+                cin.ignore(10000, '\n');
+                cin >> windSpeed;
         }
-
-    // Dewpoint
-    cout << "Enter the dewpoint in Fahrenheit: \n";
-        cin >> dew;
-        while (!dew) { // Wrong characters
-            cout << "Please input your dewpoint again: \n";
-            cin.clear();
-            cin.ignore(1000, '\n');
-            cin >> dew;
+    cout << "Please enter your dew point in Fahrenheit:\n";
+    cin >> dewPoint;
+        if (!dewPoint) {
+            cout << "Please enter your dew point again:\n";
+                cin.clear();
+                cin.ignore(10000, '\n');
+                cin >> dewPoint;
         }
+    }
 
-    // Output
-    weatherOutput();
-    return 0;
+// Wind chill & cloudbase calculation
+void windChillCalc(double& temp, double& windSpeed, double& windChill) {
+    windChill = (35.74 + (0.6215 * temp) - (37.75 * pow(windSpeed, 0.16)) + pow(0.4275 * temp * windSpeed, 0.16));
+}
+void cloudbaseCalc(double& temp, double& dewPoint, double& cloudbase) {
+    cloudbase = (1000 * ((temp - dewPoint) / 4.4));
+}
+
+// Final Output
+void weatherOutput(double& temp, double& windSpeed, double& dewPoint, double windChill, double cloudbase) {
+    cout << "==Temperature==\n";
+    cout << temp << " degrees\n";
+    cout << "===Windspeed===\n"; 
+    cout << windSpeed << " MPH\n";
+    cout << "===Dew point===\n";
+    cout << dewPoint << " degrees\n";
+    cout << "===Windchill===\n";
+    cout << windChill << " degrees\n";
+    cout << "===Cloudbase===\n";
+    cout << cloudbase << " feet\n";
 }
