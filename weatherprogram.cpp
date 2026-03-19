@@ -2,11 +2,11 @@
 #include <cmath>
 using namespace std;
 
-// Function Declaration, inputs are temp, dewpoint, and windspeed, other values are cloudbase and windchill
-void windChillCalc(double& temp, double& windSpeed, double& windChill);
-void cloudbaseCalc(double& temp, double& dewPoint, double& cloudbase);
-void input(double& temp, double& windSpeed, double& dewPoint);
-void weatherOutput(double& temp, double& windSpeed, double& dewPoint, double windChillCalc, double cloudbaseCalc);
+// Function Declaration
+void windChillCalc(double& temp, double& windSpeed, double& windChill); // Calculation for wind chill
+void cloudbaseCalc(double& temp, double& dewPoint, double& cloudbase); // Calculation for cloudbase
+void input(double& temp, double& windSpeed, double& dewPoint); // Input section
+void weatherOutput(double& temp, double& windSpeed, double& dewPoint, double windChillCalc, double cloudbaseCalc); // Final output
 
 int main() {
     double temp, windSpeed, dewPoint, windChill, cloudbase;
